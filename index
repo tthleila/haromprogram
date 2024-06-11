@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feladat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .counter-container, .shopping-list-container {
+            border: 1px solid red;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            text-align: center;
+            background-color:indianred;
+        }
+
+        .counter-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-container">
+        <h2>Számoló</h2>
+        <div id="counter">0</div>
+        <div class="counter-buttons">
+            <input type="button" onclick="decrement()" name="Csökken" value="Csökken">
+            <input type="button" onclick="increment()"name="Nő" value="Nő">
+</div>
+    </div>
+    <script>
+        let counter = 0;
+        const counterElement = document.getElementById('counter');
+
+        function increment() {
+            counter++;
+            counterElement.textContent = counter;
+        }
+
+        function decrement() {
+            counter--;
+            counterElement.textContent = counter;
+        }
+
+    </script>
+    <hr>
+    <div id="list">
+        <div class="container">
+            <form>
+                <label for="task">bevásárló lista</label>
+                <input type="text" id="task" name="task" placeholder="Szöveg">
+                <input type="button" onclick="hozzaadd()" name="add" value="Hozzá add">
+            </form>
+            <ul id="task-list"></ul>
+        </div>
+    </div>
+    <script>
+        function hozzaadd() {
+            var taskInput = document.getElementById("task");
+            var taskValue = taskInput.value;
+            var li = document.createElement("li");
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            li.appendChild(checkbox);
+            var textNode = document.createTextNode(taskValue);
+            li.appendChild(textNode);
+            var ul = document.getElementById("task-list");
+            ul.appendChild(li);
+            taskInput.value = "";
+        }
+
+    </script>
+</body>
+</html>
